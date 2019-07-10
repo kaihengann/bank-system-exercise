@@ -12,7 +12,7 @@ class BankAccount {
     this.balance += value;
     this.transactions.push({
       date: new Date().toDateString(),
-      amount: value,
+      amount: `+${value}`,
       balance: this.balance
     });
   }
@@ -22,15 +22,21 @@ class BankAccount {
       throw new Error("You are attempting to withdraw more than your balance.");
     if (!Number.isInteger(value)) throw new Error("Please input a number");
     this.balance -= value;
+    this.transactions.push({
+      date: new Date().toDateString(),
+      amount: `-${value}`,
+      balance: this.balance
+    });
   }
 
   statement() {
     console.log("DATE\t\tAMOUNT\t\tBALANCE");
-    console.log(
-      `${this.transactions[0].date}\t\t${this.transactions[0].amount}\t\t${
-        this.transactions[0].balance
-      }`
-    );
+    this.transactions.map((transaction) => {
+      console.log(
+        `${transaction.date}\t\t${transaction.amount}\t\t${
+        transaction.balance}`
+      )
+    })
   }
 }
 

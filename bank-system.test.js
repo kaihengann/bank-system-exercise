@@ -67,11 +67,13 @@ describe("BankAccount", () => {
       "DATE\t\tAMOUNT\t\tBALANCE"
     );
     expect(global.console.log).toHaveBeenCalledWith(
-      `${dateString}\t\t${amount}\t\t${bankAccount2.balance}`
+      `${dateString}\t\t+${amount}\t\t${bankAccount2.balance}`
     );
   });
 
   test("statement should return header with 2 transactions", () => {
+    const bankAccount2 = new BankAccount();
+    bankAccount2.deposit(100);
     bankAccount2.withdrawal(25);
     const dateString = new Date().toDateString();
     bankAccount2.statement();
@@ -80,11 +82,20 @@ describe("BankAccount", () => {
       "DATE\t\tAMOUNT\t\tBALANCE"
     );
     expect(global.console.log).toHaveBeenCalledWith(
-      `${dateString}\t\t100\t\t100`
+      `${dateString}\t\t+100\t\t100`
     );
 
     expect(global.console.log).toHaveBeenCalledWith(
-      `${dateString}\t\t25\t\t75`
+      `${dateString}\t\t-25\t\t75`
+    );
+  });
+
+  test('should show balance', () => {
+    const bankAccount2 = new BankAccount();
+    bankAccount2.deposit(100);
+    bankAccount2.balance()
+    expect(global.console.log).toHaveBeenCalledWith(
+      `${bankAccount2.balance}`
     );
   });
 });
