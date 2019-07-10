@@ -90,12 +90,10 @@ describe("BankAccount", () => {
     );
   });
 
-  test('should show balance', () => {
+  test("should show balance", () => {
     const bankAccount2 = new BankAccount();
     bankAccount2.deposit(100);
-    bankAccount2.balance()
-    expect(global.console.log).toHaveBeenCalledWith(
-      `${bankAccount2.balance}`
-    );
+    bankAccount2.currBalance();
+    expect(global.console.log).toHaveBeenCalledWith(bankAccount2.balance);
   });
 });

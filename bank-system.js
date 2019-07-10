@@ -31,12 +31,15 @@ class BankAccount {
 
   statement() {
     console.log("DATE\t\tAMOUNT\t\tBALANCE");
-    this.transactions.map((transaction) => {
+    this.transactions.map(transaction => {
       console.log(
-        `${transaction.date}\t\t${transaction.amount}\t\t${
-        transaction.balance}`
-      )
-    })
+        `${transaction.date}\t\t${transaction.amount}\t\t${transaction.balance}`
+      );
+    });
+  }
+
+  currBalance() {
+    console.log(this.balance);
   }
 }
 
