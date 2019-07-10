@@ -1,6 +1,8 @@
 const BankAccount = require("./bank-system.js");
 
 describe("BankAccount", () => {
+  global.console.log = jest.fn();
+
   const bankAccount1 = new BankAccount();
 
   beforeEach(() => {
@@ -47,4 +49,10 @@ describe("BankAccount", () => {
     );
   });
 
+  test("statement should return header", () => {
+    bankAccount1.statement();
+    expect(global.console.log).toHaveBeenCalledWith(
+      "DATE\t\tAMOUNT\t\tBALANCE\n"
+    );
+  });
 });

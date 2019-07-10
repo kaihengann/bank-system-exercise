@@ -12,7 +12,9 @@ class BankAccount {
   }
 
   withdrawal(value) {
-    if (value > this.balance) throw new Error("You are attempting to withdraw more than your balance.")
+    if (value > this.balance)
+      throw new Error("You are attempting to withdraw more than your balance.");
+    if (!Number.isInteger(value)) throw new Error("Please input a number");
     this.balance -= value;
   }
 }
