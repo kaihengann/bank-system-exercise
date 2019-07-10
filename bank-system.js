@@ -7,6 +7,7 @@ class BankAccount {
     if (value < 0) {
       throw new Error();
     }
+    if (!Number.isInteger(value)) throw new Error("Please input a number")
     this.balance += value;
   }
 }
