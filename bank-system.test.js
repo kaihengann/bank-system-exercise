@@ -11,4 +11,10 @@ describe("BankAccount", () => {
     bankAccount1.deposit(5);
     expect(bankAccount1.balance).toEqual(5);
   });
+
+  test("should have throw error if deposit value is negative", () => {
+    expect(bankAccount1.deposit(-1)).toThrowError();
+  });
+
+
 });
