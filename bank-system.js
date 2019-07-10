@@ -17,6 +17,10 @@ class BankAccount {
     if (!Number.isInteger(value)) throw new Error("Please input a number");
     this.balance -= value;
   }
+
+  statement() {
+    console.log("DATE\t\tAMOUNT\t\tBALANCE")
+  }
 }
 
 module.exports = BankAccount;

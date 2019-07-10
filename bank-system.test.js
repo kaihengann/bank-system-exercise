@@ -52,7 +52,22 @@ describe("BankAccount", () => {
   test("statement should return header", () => {
     bankAccount1.statement();
     expect(global.console.log).toHaveBeenCalledWith(
-      "DATE\t\tAMOUNT\t\tBALANCE\n"
+      "DATE\t\tAMOUNT\t\tBALANCE"
     );
+  });
+
+  test("statement should return header with 1 transaction", () => {
+    bankAccount1.deposit(100)
+    const dateString = Date.now().toDateString()
+    const amount = 100
+    bankAccount1.statement();
+
+    expect(global.console.log).toHaveBeenCalledWith(
+      "DATE\t\tAMOUNT\t\tBALANCE"
+    );
+    expect(global.console.log).toHaveBeenCalledWith(
+      `${dateString}\t\t${amount}\t\t${bankAccount1.balance}`
+    );
+
   });
 });
