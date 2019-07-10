@@ -40,4 +40,11 @@ describe("BankAccount", () => {
       bankAccount1.withdrawal(15);
     }).toThrow("You are attempting to withdraw more than your balance.");
   });
+
+  test("bankAccount1 should throw error if deposit value is a non-number", () => {
+    expect(() => bankAccount1.withdrawal("@#$@#")).toThrow(
+      "Please input a number"
+    );
+  });
+  
 });
