@@ -57,17 +57,34 @@ describe("BankAccount", () => {
   });
 
   test("statement should return header with 1 transaction", () => {
-    bankAccount1.deposit(100)
-    const dateString = Date.now().toDateString()
-    const amount = 100
-    bankAccount1.statement();
+    const bankAccount2 = new BankAccount();
+    bankAccount2.deposit(100);
+    const dateString = new Date().toDateString();
+    const amount = 100;
+    bankAccount2.statement();
 
     expect(global.console.log).toHaveBeenCalledWith(
       "DATE\t\tAMOUNT\t\tBALANCE"
     );
     expect(global.console.log).toHaveBeenCalledWith(
-      `${dateString}\t\t${amount}\t\t${bankAccount1.balance}`
+      `${dateString}\t\t${amount}\t\t${bankAccount2.balance}`
+    );
+  });
+
+  test("statement should return header with 2 transactions", () => {
+    bankAccount2.withdrawal(25);
+    const dateString = new Date().toDateString();
+    bankAccount2.statement();
+
+    expect(global.console.log).toHaveBeenCalledWith(
+      "DATE\t\tAMOUNT\t\tBALANCE"
+    );
+    expect(global.console.log).toHaveBeenCalledWith(
+      `${dateString}\t\t100\t\t100`
     );
 
+    expect(global.console.log).toHaveBeenCalledWith(
+      `${dateString}\t\t25\t\t75`
+    );
   });
 });
