@@ -13,8 +13,10 @@ describe("BankAccount", () => {
   });
 
   test("should have throw error if deposit value is negative", () => {
-    expect(bankAccount1.deposit(-1)).toThrowError();
+    expect(() => bankAccount1.deposit(-1)).toThrow();
   });
 
-
+  test("bankAccount1 should throw error if deposit value is a non-number", () => {
+    expect(() => bankAccount1.deposit("garbage")).toThrow();
+  });
 });
