@@ -35,6 +35,12 @@ describe("BankAccount", () => {
     expect(bankAccount1.balance).toBe(5);
   });
 
+  test("bankAccount1 with balance 10 should have balance of 0 when there is a withdrawal of 10", () => {
+    bankAccount1.deposit(10);
+    bankAccount1.withdraw(10);
+    expect(bankAccount1.balance).toBe(0);
+  });
+
   test("bankAccount1 with balance 10 should throw an error when there is a withdrawal of 15", () => {
     bankAccount1.deposit(10);
     expect(() => {
@@ -84,7 +90,6 @@ describe("BankAccount", () => {
     expect(global.console.log).toHaveBeenCalledWith(
       `${dateString}\t\t+100\t\t100`
     );
-
     expect(global.console.log).toHaveBeenCalledWith(
       `${dateString}\t\t-25\t\t75`
     );
@@ -94,6 +99,7 @@ describe("BankAccount", () => {
     const bankAccount2 = new BankAccount();
     bankAccount2.deposit(100);
     bankAccount2.currBalance();
+
     expect(global.console.log).toHaveBeenCalledWith(bankAccount2.balance);
   });
 });
