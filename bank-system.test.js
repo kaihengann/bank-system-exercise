@@ -8,13 +8,13 @@ describe("BankAccount", () => {
     bankAccount1.balance = 0;
   });
 
-  describe('BankAccount class', () => {
+  describe("BankAccount class", () => {
     test("should create an instance of BankAccount class", () => {
       expect(bankAccount1.balance).toBe(0);
     });
   });
 
-  describe('Deposit and withdrawal', () => {
+  describe("Deposit and withdrawal", () => {
     test("should add to balance after deposit", () => {
       bankAccount1.deposit(5);
       expect(bankAccount1.balance).toBe(5);
@@ -75,9 +75,7 @@ describe("BankAccount", () => {
     });
   });
 
-  
-  
-  describe('Statement and balance', () => {
+  describe("Statement and balance", () => {
     test("should return statement header", () => {
       bankAccount1.statement();
       expect(global.console.log).toHaveBeenCalledWith(
