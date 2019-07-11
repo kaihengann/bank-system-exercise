@@ -5,9 +5,7 @@ class BankAccount {
   }
 
   deposit(value) {
-    if (value < 0) {
-      throw new Error("Deposit cannot be negative");
-    }
+    if (value < 0) throw new Error("Deposit cannot be negative");
     if (!Number.isInteger(value)) throw new Error("Please input a number");
     this.balance += value;
     this.transactions.push({
@@ -17,7 +15,7 @@ class BankAccount {
     });
   }
 
-  withdrawal(value) {
+  withdraw(value) {
     if (value > this.balance)
       throw new Error("You are attempting to withdraw more than your balance.");
     if (!Number.isInteger(value)) throw new Error("Please input a number");
@@ -42,10 +40,5 @@ class BankAccount {
     console.log(this.balance);
   }
 }
-
-const bankAccount1 = new BankAccount()
-bankAccount1.deposit(100)
-bankAccount1.withdrawal(50)
-bankAccount1.statement()
 
 module.exports = BankAccount;
