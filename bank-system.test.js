@@ -47,6 +47,17 @@ describe("BankAccount", () => {
     expect(bankAccount1.balance).toBe(0);
   });
 
+  test("should reflect the right balance  after multiple transactions", () => {
+    bankAccount1.deposit(10);
+    bankAccount1.withdraw(10);
+    bankAccount1.deposit(10);
+    bankAccount1.deposit(5);
+    bankAccount1.withdraw(10);
+    bankAccount1.withdraw(2);
+
+    expect(bankAccount1.balance).toBe(3);
+  });
+
   test("should throw an error when withdrawal is more than balance", () => {
     bankAccount1.deposit(10);
     expect(() => {
