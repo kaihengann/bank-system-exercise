@@ -30,7 +30,7 @@ class BankAccount {
   }
 
   statement() {
-    console.log("DATE\t\tAMOUNT\t\tBALANCE");
+    console.log("DATE\t\t\tAMOUNT\t\tBALANCE");
     this.transactions.map(transaction => {
       console.log(
         `${transaction.date}\t\t${transaction.amount}\t\t${transaction.balance}`
@@ -42,5 +42,10 @@ class BankAccount {
     console.log(this.balance);
   }
 }
+
+const bankAccount1 = new BankAccount()
+bankAccount1.deposit(100)
+bankAccount1.withdrawal(50)
+bankAccount1.statement()
 
 module.exports = BankAccount;

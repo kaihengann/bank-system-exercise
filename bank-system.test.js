@@ -52,7 +52,7 @@ describe("BankAccount", () => {
   test("statement should return header", () => {
     bankAccount1.statement();
     expect(global.console.log).toHaveBeenCalledWith(
-      "DATE\t\tAMOUNT\t\tBALANCE"
+      "DATE\t\t\tAMOUNT\t\tBALANCE"
     );
   });
 
@@ -64,7 +64,7 @@ describe("BankAccount", () => {
     bankAccount2.statement();
 
     expect(global.console.log).toHaveBeenCalledWith(
-      "DATE\t\tAMOUNT\t\tBALANCE"
+      "DATE\t\t\tAMOUNT\t\tBALANCE"
     );
     expect(global.console.log).toHaveBeenCalledWith(
       `${dateString}\t\t+${amount}\t\t${bankAccount2.balance}`
@@ -79,7 +79,7 @@ describe("BankAccount", () => {
     bankAccount2.statement();
 
     expect(global.console.log).toHaveBeenCalledWith(
-      "DATE\t\tAMOUNT\t\tBALANCE"
+      "DATE\t\t\tAMOUNT\t\tBALANCE"
     );
     expect(global.console.log).toHaveBeenCalledWith(
       `${dateString}\t\t+100\t\t100`
