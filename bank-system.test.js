@@ -8,60 +8,66 @@ describe("BankAccount", () => {
     bankAccount1.balance = 0;
   });
 
-  test("bankAccount1 should be an instance of BankAccount class", () => {
+  test("should create an instance of BankAccount class", () => {
     expect(bankAccount1.balance).toBe(0);
   });
 
-  test("bankAccount1 should have balance of 5 after deposit of 5", () => {
+  test("should add to balance after deposit", () => {
     bankAccount1.deposit(5);
     expect(bankAccount1.balance).toBe(5);
   });
 
-  test("should have throw error if deposit value is negative", () => {
+  test("should throw error if deposit is 0", () => {
     expect(() => bankAccount1.deposit(-1)).toThrow(
-      "Deposit cannot be negative"
+      "Deposit amount cannot be negative or zero"
     );
   });
 
-  test("bankAccount1 should throw error if deposit value is a non-number", () => {
+  test("should have throw error if deposit is negative", () => {
+    expect(() => bankAccount1.deposit(-1)).toThrow(
+      "Deposit amount cannot be negative or zero"
+    );
+  });
+
+  test("should throw error if deposit value is a non-number", () => {
     expect(() => bankAccount1.deposit("garbage")).toThrow(
       "Please input a number"
     );
   });
 
-  test("bankAccount1 with balance 10 should have balance of 5 when there is a withdrawal of 5", () => {
+  test("should subtract from balance after withdrawal", () => {
     bankAccount1.deposit(10);
     bankAccount1.withdraw(5);
     expect(bankAccount1.balance).toBe(5);
   });
 
-  test("bankAccount1 with balance 10 should have balance of 0 when there is a withdrawal of 10", () => {
+  test("should make balance 0 after withdrawal", () => {
     bankAccount1.deposit(10);
     bankAccount1.withdraw(10);
     expect(bankAccount1.balance).toBe(0);
   });
 
-  test("bankAccount1 with balance 10 should throw an error when there is a withdrawal of 15", () => {
+  test("should throw an error when withdrawal is more than balance", () => {
     bankAccount1.deposit(10);
     expect(() => {
       bankAccount1.withdraw(15);
-    }).toThrow("You are attempting to withdraw more than your balance.");
+    }).toThrow("Insufficient balance");
   });
 
-  test("bankAccount1 should throw error if withdrawal value is a non-number", () => {
+  test("should throw error if withdrawal value is not a number", () => {
     expect(() => bankAccount1.withdraw("@#$@#")).toThrow(
       "Please input a number"
     );
   });
 
-  test("statement should return header", () => {
+  test("should return statement header", () => {
     bankAccount1.statement();
     expect(global.console.log).toHaveBeenCalledWith(
       "DATE\t\t\tAMOUNT\t\tBALANCE"
     );
   });
 
-  test("statement should return header with 1 transaction", () => {
+  test("should return statement header with 1 transaction", () => {
     const bankAccount2 = new BankAccount();
     bankAccount2.deposit(100);
     bankAccount2.statement();
@@ -76,7 +82,7 @@ describe("BankAccount", () => {
     );
   });
 
-  test("statement should return header with 2 transactions", () => {
+  test("should return statement header with 2 transactions", () => {
     const bankAccount2 = new BankAccount();
     bankAccount2.deposit(100);
     bankAccount2.withdraw(25);

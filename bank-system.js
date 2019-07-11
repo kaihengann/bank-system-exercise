@@ -5,7 +5,8 @@ class BankAccount {
   }
 
   deposit(value) {
-    if (value < 0) throw new Error("Deposit cannot be negative");
+    if (value <= 0)
+      throw new Error("Deposit amount cannot be negative or zero");
     if (!Number.isInteger(value)) throw new Error("Please input a number");
     this.balance += value;
     this.transactions.push({
@@ -16,8 +17,8 @@ class BankAccount {
   }
 
   withdraw(value) {
-    if (value > this.balance)
-      throw new Error("You are attempting to withdraw more than your balance.");
+    if (value > this.balance) throw new Error("Insufficient balance");
+    if (value === 0) throw new Error("Withdrawal amount cannot be zero");
     if (!Number.isInteger(value)) throw new Error("Please input a number");
     this.balance -= value;
     this.transactions.push({
